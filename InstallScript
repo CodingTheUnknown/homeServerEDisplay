@@ -10,11 +10,7 @@ sudo apt-get install python3-numpy
 sudo pip3 install RPi.GPIO
 sudo pip3 install spidev
 
-# echo "Cloning git repo to: $PWD"
-# git clone https://github.com/waveshare/e-Paper.git
-# cd e-Paper/RaspberryPi_JetsonNano/
-
-echo "Installing the demo"
+echo "Cloning git repo to: $PWD"
 git clone https://github.com/waveshare/e-Paper.git
 cd e-Paper/RaspberryPi_JetsonNano/
 
