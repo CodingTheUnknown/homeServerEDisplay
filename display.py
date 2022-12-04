@@ -44,6 +44,7 @@ try:
     font18 = ImageFont.truetype(os.path.join(picdir, 'Font.ttc'), 18)
     font30 = ImageFont.truetype(os.path.join(picdir, 'Font.ttc'), 40)
     font12 = ImageFont.truetype(os.path.join(picdir, 'Font.ttc'), 12)
+    font14 = ImageFont.truetype(os.path.join(picdir, 'Font.ttc'), 14)
 
     # Setting up the image screen
     Himage = Image.new('1', (epd.height, epd.width), 255)  # 255: clear the frame
@@ -61,22 +62,28 @@ try:
     draw.text((Screen.width_lower.value, 30), 'Service Status:', font = font18, fill = 0)
     draw.rectangle([(Screen.width_lower.value, 60), (Screen.width_center.value -2, 100)], width=2)
     draw.text((Screen.width_lower.value + 3, 63), "piHole", font=font18, fill=0)
-    draw.text((Screen.width_lower.value + 3, 85), "192.168.1.4", font=font12, fill=0)
-    draw.text((Screen.width_center.value - 2 - 35, 70), "OFF", font=font18, fill=0)
+    draw.text((Screen.width_lower.value + 3, 85), "192.168.1.4:81", font=font12, fill=0)
+    draw.text((Screen.width_center.value - 2 - 35, 70), "ON", font=font18, fill=0)
     draw.rectangle([(Screen.width_center.value + 2, 60), (Screen.width_upper.value, 100)], width=2)
     draw.text((Screen.width_center.value + 5, 63), "Homer", font=font18, fill=0)
-    draw.text((Screen.width_center.value + 5, 85), "192.168.1.4", font=font12, fill=0)
+    draw.text((Screen.width_center.value + 5, 85), "192.168.1.4:80", font=font12, fill=0)
     draw.text((Screen.width_upper.value - 2 - 35, 70), "OFF", font=font18, fill=0)
 
     # Box row 2
     draw.rectangle([(Screen.width_lower.value, 104), (Screen.width_center.value -2, 144)], width=2)
     draw.text((Screen.width_lower.value + 3, 107), "Portainer", font=font18, fill=0)
-    draw.text((Screen.width_lower.value + 3, 129), "192.168.1.4", font=font12, fill=0)
+    draw.text((Screen.width_lower.value + 3, 129), "192.168.1.4:9000", font=font12, fill=0)
     draw.text((Screen.width_center.value - 2 - 35, 114), "OFF", font=font18, fill=0)
     draw.rectangle([(Screen.width_center.value + 2, 104), (Screen.width_upper.value, 144)], width=2)
     draw.text((Screen.width_center.value + 5, 107), "Prometheus", font=font18, fill=0)
-    draw.text((Screen.width_center.value + 5, 129), "192.168.1.4", font=font12, fill=0)
+    draw.text((Screen.width_center.value + 5, 129), "192.168.1.4:9999", font=font12, fill=0)
     draw.text((Screen.width_upper.value - 2 - 35, 114), "OFF", font=font18, fill=0)
+
+    # Weather Data
+    draw.text((Screen.width_lower.value, 156), 'Climate Data:', font=font18, fill=0)
+    draw.text((Screen.width_lower.value + 10, 178), u'Temperature: -- \N{DEGREE SIGN}C', font=font14, fill=0)
+    draw.text((Screen.width_lower.value + 10, 197), 'Humidity: -- %', font=font14, fill=0)
+    draw.text((Screen.width_lower.value + 10, 216), 'Pressure: -- mb', font=font14, fill=0)
 
     # Display the created image
     epd.display(epd.getbuffer(Himage))
