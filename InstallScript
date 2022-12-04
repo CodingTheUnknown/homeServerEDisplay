@@ -1,0 +1,32 @@
+#!/bin/bash
+
+
+echo "Installing python libs"
+
+sudo apt-get update
+sudo apt-get install python3-pip
+sudo apt-get install python3-pil
+sudo apt-get install python3-numpy
+sudo pip3 install RPi.GPIO
+sudo pip3 install spidev
+
+# echo "Cloning git repo to: $PWD"
+# git clone https://github.com/waveshare/e-Paper.git
+# cd e-Paper/RaspberryPi_JetsonNano/
+
+echo "Installing the demo"
+git clone https://github.com/waveshare/e-Paper.git
+cd e-Paper/RaspberryPi_JetsonNano/
+
+echo "Run the demo"
+cd python/examples/
+python3 epd_3in52_test.py
+
+echo "Moving libray file to an importable location: /usr/local/lib/python3.9/dist-packages/"
+cd ..
+cp -r lib/waveshare_epd/ /usr/local/lib/python3.9/dist-packages/
+
+echo "Install script complete"
+echo "All that is left is to move the pic directory into your project allowing fonts."
+echo "The location of the pic folder is e-Paper/RaspberryPi_JetsonNano/python/pic/"
+echo "Done"
